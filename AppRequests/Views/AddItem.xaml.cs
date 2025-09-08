@@ -1,0 +1,47 @@
+﻿using AppRequests.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+
+namespace AppRequests.Views
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AddItem : ContentPage
+    {
+        private MyDatabase database;
+
+        public AddItem()
+        {
+            InitializeComponent();
+
+            database = new MyDatabase(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "mydata.db3"));
+        }
+
+        private async void AddButton_Clicked(object sender, EventArgs e)
+        {
+            if (phoneEntry.MaxLength < 15 || Regex.IsMatch(phoneEntry.Text, @"^(\+7|8)?(\s|\$)?\d{3}(\s|\$)?\d{3}[-]?\d{2}[-]?\d{2}$"))
+            {
+                await DisplayAlert("Error", "Введите полный Российский номер телефона!", "Ok");
+                return;
+            }
+            else
+            {
+                database.AddData(nameEntry.Text, phoneEntry.Text, moneyEntry.Text, platformEntry.Text, textEntry.Text);
+                await Navigation.PopAsync();
+                nameEntry.Text = "";
+                phoneEntry.Text = "";
+                moneyEntry.Text = "";
+                platformEntry.Text = "";
+                textEntry.Text = "";
+                await DisplayAlert("Информация", "Заявка успешно подана", "Ок");
+            }
+        }
+    }
+}

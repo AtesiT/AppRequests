@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppRequests.Views.ItemPage"
+             Title="Просмотр заявок">
+
+    <StackLayout>
+        <ListView x:Name="dataList" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label TextColor="Black" Text="{Binding Name}" FontSize="Large"></Label>
+                            <Label TextColor="Black" Text="{Binding Phone}" FontSize="14"></Label>
+                            <Label TextColor="Gray" Text="{Binding Money}" FontSize="12"></Label>
+                            <Label TextColor="Gray" Text="{Binding Platform}" FontSize="12"></Label>
+                            <Label TextColor="Gray" Text="{Binding Text}" LineBreakMode="WordWrap"></Label>
+                            <BoxView Margin="0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button BackgroundColor="#992196fe" Text="Обновить" Clicked="UpdateButton_Clicked"/>
+        <Button BackgroundColor="Red" Text="Удалить" Clicked="DeleteButton_Clicked"/>
+    </StackLayout>
+
+</ContentPage>

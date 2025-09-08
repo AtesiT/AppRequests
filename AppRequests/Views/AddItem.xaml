@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppRequests.Views.AddItem"
+             Title="Добавление заявки">
+
+    <StackLayout BackgroundColor="White">
+        <Label TextColor="Black" Text="Программа:" FontSize="Medium"/>
+        <Entry TextColor="Black" x:Name="nameEntry" Placeholder="Name" ClearButtonVisibility="WhileEditing" MaxLength="30"/>
+        <Entry TextColor="Black" Text="Телефон:" FontSize="20"/>
+        <Entry TextColor="Black" x:Name="phoneEntry" Placeholder="Phone" ClearButtonVisibility="WhileEditing" MaxLength="11"/>
+        <Entry TextColor="Black" Text="Объем заявки:" FontSize="Medium"/>
+        <Entry TextColor="Black" x:Name="moneyEntry" Placeholder="Money" ClearButtonVisibility="WhileEditing" MaxLength="20"/>
+        <Entry TextColor="Black" Text="Платформа:" FontSize="Medium"/>
+        <Entry TextColor="Black" x:Name="platformEntry" Placeholder="Platform" ClearButtonVisibility="WhileEditing" MaxLength="20"/>
+        <Label TextColor="Black" Text="Отчество:" FontSize="Medium"/>
+        <Editor TextColor="Black" x:Name="textEntry" Placeholder="Текст" HeightRequest="100" MaxLength="200"/>
+        <Button BackgroundColor="#992196fe" Text="Отправить" Clicked="AddButton_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
