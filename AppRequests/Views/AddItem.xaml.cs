@@ -26,22 +26,21 @@ namespace AppRequests.Views
 
         private async void AddButton_Clicked(object sender, EventArgs e)
         {
-            if (phoneEntry.MaxLength < 15 || Regex.IsMatch(phoneEntry.Text, @"^(\+7|8)?(\s|\$)?\d{3}(\s|\$)?\d{3}[-]?\d{2}[-]?\d{2}$"))
+            var digits = Regex.Replace((phoneEntry.Text ?? ""), @"\D", ""); // только цифры
+            if (!((digits.Length == 11 && (digits.StartsWith("7") || digits.StartsWith("8"))) || digits.Length == 10))
             {
                 await DisplayAlert("Error", "Введите полный Российский номер телефона!", "Ok");
                 return;
             }
-            else
-            {
-                database.AddData(nameEntry.Text, phoneEntry.Text, moneyEntry.Text, platformEntry.Text, textEntry.Text);
-                await Navigation.PopAsync();
-                nameEntry.Text = "";
-                phoneEntry.Text = "";
-                moneyEntry.Text = "";
-                platformEntry.Text = "";
-                textEntry.Text = "";
-                await DisplayAlert("Информация", "Заявка успешно подана", "Ок");
-            }
+
+            database.AddData(nameEntry.Text, phoneEntry.Text, moneyEntry.Text, platformEntry.Text, textEntry.Text);
+            await Navigation.PopAsync();
+            nameEntry.Text = "";
+            phoneEntry.Text = "";
+            moneyEntry.Text = "";
+            platformEntry.Text = "";
+            textEntry.Text = "";
+            await DisplayAlert("Информация", "Заявка успешно подана", "Ок");
         }
     }
 }
